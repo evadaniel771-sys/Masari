@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#91AD9B">
+<meta name="description" content="مساري — مساحة شخصية لطالبة بكالوريا الجزائر، شعبة علوم تجريبية">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+<title>مساري | Bac Sciences</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
+:root{
+ --bg:#F2F6F3;--surface:#FFFFFF;--surface2:#F8FAF8;--ink:#25372E;--muted:#7A8981;
+ --sage:#91AD9B;--sage-dark:#63836F;--mint:#DCEBE2;--blue:#DCEAF1;--lav:#E4E1F0;
+ --peach:#F1E6DF;--line:#E5ECE7;--shadow:0 14px 40px rgba(51,76,63,.08);
+ --r:24px
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(135deg,#F5F8F6,#EDF4F1);color:var(--ink);font-family:Cairo,system-ui,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}
+.app{min-height:100vh;display:flex;gap:16px;padding:16px}
+.side{width:92px;flex:0 0 92px;height:calc(100vh - 32px);position:sticky;top:16px;border-radius:28px;background:linear-gradient(180deg,#9DB8A7,#84A590);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;padding:15px 11px;z-index:20}
+.logo{width:56px;height:56px;border-radius:19px;background:#fff;display:grid;place-items:center;font:800 20px Poppins;color:#678B74;box-shadow:0 7px 18px #54746025}
+.nav{display:flex;flex-direction:column;gap:7px;width:100%;margin-top:15px}
+.nav button{width:56px;height:48px;border-radius:17px;background:transparent;color:#fff;font-size:20px;transition:.18s;position:relative}
+.nav button:hover,.nav button.active{background:#fff;color:#6B8B76;transform:translateY(-1px)}
+.nav button small{position:absolute;top:4px;right:4px;font:700 7px Poppins;background:#E3EFE8;color:#6B8B76;border-radius:8px;padding:2px 4px}
+.stickers{margin-top:9px;display:flex;flex-direction:column;gap:8px;align-items:center}
+.sticker{font:700 8px Poppins;color:#526B5B;background:#EAF2ED;padding:7px 5px;border-radius:11px;transform:rotate(-5deg);box-shadow:0 5px 12px #506a5b18}
+.sticker:nth-child(2){background:#DCEAF1;transform:rotate(4deg)}.sticker:nth-child(3){background:#E5E1F0;transform:rotate(-4deg)}.sticker:nth-child(4){background:#EAEFD9;transform:rotate(5deg)}.sticker:nth-child(5){background:#F1E5DF;transform:rotate(-2deg)}
+.sidebottom{margin-top:auto;color:#EAF2ED;font-size:11px}
+.main{flex:1;min-width:0;max-width:1450px;margin:auto}
+.top{height:70px;border:1px solid var(--line);background:#ffffffdf;backdrop-filter:blur(14px);border-radius:23px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;padding:9px 14px;position:sticky;top:16px;z-index:15}
+.top-title{font:700 19px Poppins}.top-actions{display:flex;align-items:center;gap:8px}
+.focus{background:#E5F2EA;color:#5E806B;border-radius:13px;padding:8px 11px;font-size:10px;font-weight:800}
+.icon{width:40px;height:40px;border-radius:13px;background:#F1F5F2;color:#61736A}
+.profile{display:flex;align-items:center;gap:8px;background:#F7F9F7;padding:4px 9px 4px 5px;border-radius:16px}
+.avatar{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#A9C2B2,#DDE8E0);display:grid;place-items:center;color:#52705E;font-weight:800}
+.profile b{font-size:10px}.profile small{display:block;color:var(--muted);font-size:8px}
+.content{padding:16px 0 55px}.page{display:none}.page.active{display:block}
+.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,.8fr);gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:19px}
+.hero{min-height:242px;background:linear-gradient(135deg,#DDEBE2,#E9F1F3 55%,#E6E2F0);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:#fff4;left:-110px;bottom:-150px}
+.hero-inner{position:relative;z-index:1;display:flex;justify-content:space-between;gap:20px;height:100%}
+.date{font-size:10px;color:#6F8378}.hero h1{font-size:27px;margin:8px 0 3px}.hero p{font-size:11px;color:#65766E;margin:0}
+.primary{margin-top:18px;background:#fff;color:#587763;border-radius:13px;padding:10px 15px;font-weight:800;box-shadow:0 7px 18px #506d5b12}
+.cal{width:240px;background:#ffffff8c;border:1px solid #fff9;border-radius:20px;padding:12px}
+.calhead{display:flex;justify-content:space-between;font-size:10px;font-weight:800;margin-bottom:8px}.calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font:500 8px Poppins;color:#73817B}.calgrid b{font-size:7px;color:#9AA59F}.calgrid i{font-style:normal;padding:5px 0;border-radius:8px}.calgrid i.today{background:#91AD9B;color:#fff;font-weight:800}
+.section{display:flex;justify-content:space-between;align-items:center;margin:16px 2px 9px}.section h2{font-size:15px;margin:0}.section span,.section button{font-size:9px;color:var(--muted)}.section button{background:transparent;color:#668671;font-weight:800}
+.tasks{display:flex;flex-direction:column;gap:8px}.task{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:15px;padding:10px 9px;cursor:pointer}.task:hover{background:#FBFCFB}
+.check{width:20px;height:20px;border:2px solid #B8C9BF;border-radius:7px;background:#fff;color:#fff;display:grid;place-items:center;flex:0 0 auto;font-size:11px}.task.done .check{background:#91AD9B;border-color:#91AD9B}.task.done .taskname{text-decoration:line-through;color:#9AA59F}
+.taskmain{flex:1;min-width:0}.taskname{font-size:11px;font-weight:800}.taskmeta{font-size:8px;color:var(--muted)}.time{font:500 9px Poppins;color:#8C9792}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.week{height:125px;display:flex;align-items:end;gap:8px}.day{flex:1;text-align:center;font:500 8px Poppins;color:#89968F}.bar{height:90px;background:#EFF4F0;border-radius:11px;display:flex;align-items:end;overflow:hidden;margin-bottom:5px}.bar span{display:block;width:100%;background:#A9C5B4;border-radius:11px}
+.timer{background:linear-gradient(135deg,#E6F0DF,#EAF3F3,#E8E4F0);text-align:center}.timer h3{font:700 14px Poppins;margin:0}.timer small{color:var(--muted);font-size:9px}.clock{font:800 43px Poppins;color:#526C5D;letter-spacing:1px;margin:9px 0}.timer button{padding:8px 15px;border-radius:12px;background:#fff;color:#5E7C69;font-weight:800;margin:0 3px}
+.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.resource{background:#F7FAF8;border:1px solid var(--line);border-radius:17px;padding:12px}.resource b{font-size:10px}.resource small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
+.quote{background:linear-gradient(135deg,#E8E3F0,#E2EEF1);text-align:center;font-size:14px;font-weight:800;line-height:1.9}
+.quote .small{font-size:9px;color:#7C8984;font-weight:600}.quote-text{max-width:680px;margin:7px auto}
+.subjects{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.subject{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:20px;padding:17px;box-shadow:var(--shadow)}.stripe{position:absolute;inset:0 0 0 auto;width:6px;background:#91AD9B}.subject:nth-child(2) .stripe{background:#A8C8D8}.subject:nth-child(3) .stripe{background:#BDB9D8}.subject:nth-child(4) .stripe{background:#B4CDBE}.subject:nth-child(5) .stripe{background:#C8D4A7}.subject:nth-child(6) .stripe{background:#B8CBD9}.subject:nth-child(7) .stripe{background:#C9BED7}.subject .ico{font-size:24px}.subject h3{margin:6px 0 2px;font-size:14px}.subject p{margin:0;color:var(--muted);font-size:9px}.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:11px}.chip{background:#F0F5F2;color:#627A6A;border-radius:9px;padding:5px 8px;font-size:8px;font-weight:800}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.listcard{background:#fff;border:1px solid var(--line);border-radius:19px;padding:15px;box-shadow:var(--shadow)}.listcard h3{font-size:13px;margin:5px 0 3px}.listcard p{font-size:9px;color:var(--muted);margin:0 0 9px}.tag{display:inline-block;background:#E9F1F3;color:#617A82;padding:4px 7px;border-radius:8px;font-size:7px;font-weight:800;margin-left:3px}.chipbtn{background:#F0F5F2;color:#607A69;padding:6px 9px;border-radius:10px;font-size:8px;font-weight:800}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:11px}.filters input,.filters select,.field input,.field textarea,.field select{border:1px solid var(--line);background:#FAFCFB;border-radius:12px;padding:9px 10px;outline:none;color:var(--ink);font-size:10px}.filters input{flex:1;min-width:180px}
+.annual{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.phase{border-radius:18px;padding:14px;background:#F5F8F6;border:1px solid var(--line)}.phase:nth-child(2){background:#EFF6F4}.phase:nth-child(3){background:#F1EFF7}.phase:nth-child(4){background:#F5F1EC}.phase b{font-size:11px}.phase h3{font-size:12px;margin:5px 0}.phase p{font-size:8px;color:var(--muted);line-height:1.8;margin:0}
+.empty{padding:28px;text-align:center;border:1px dashed #C9D7CF;border-radius:18px;color:var(--muted);font-size:10px}
+.modalbg{position:fixed;inset:0;background:#26372f66;display:none;align-items:center;justify-content:center;padding:18px;z-index:60}.modalbg.show{display:flex}.modal{width:min(480px,100%);background:#fff;border-radius:23px;padding:19px;box-shadow:0 30px 80px #0003}.modal h3{margin:0 0 14px}.field{margin-bottom:11px}.field label{display:block;font-size:9px;font-weight:800;margin-bottom:5px}.field input,.field select,.field textarea{width:100%}.field textarea{min-height:80px;resize:vertical}.actions{display:flex;gap:7px}.add{background:#91AD9B;color:#fff;border-radius:11px;padding:9px 15px;font-weight:800}.cancel{background:#EEF2F0;color:#607068;border-radius:11px;padding:9px 15px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,25px);opacity:0;background:#2E473A;color:#fff;border-radius:13px;padding:10px 15px;font-size:10px;z-index:100;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.app{padding:9px}.side{width:68px;flex-basis:68px;height:calc(100vh - 18px);top:9px;padding:11px 7px;border-radius:22px}.logo{width:46px;height:46px}.nav button{width:46px}.grid{grid-template-columns:1fr}.top{top:9px}.cal{width:215px}}
+@media(max-width:650px){.app{display:block;padding:0}.side{position:fixed;left:0;right:0;bottom:0;top:auto;width:auto;height:68px;border-radius:21px 21px 0 0;display:block;padding:7px 8px}.logo,.stickers,.sidebottom{display:none}.nav{height:54px;flex-direction:row;justify-content:space-around;align-items:center;margin:0;gap:0}.nav button{width:43px;height:49px}.nav button:nth-child(n+7){display:none}.main{padding-bottom:70px}.top{margin:9px;height:61px;border-radius:20px;padding:7px 9px}.top-title{font-size:16px}.focus{display:none}.profile small,.profile b{display:none}.content{padding:0 9px 35px}.hero{min-height:auto}.hero-inner{display:block}.hero h1{font-size:23px}.cal{width:100%;margin-top:15px}.two,.subjects,.list,.annual{grid-template-columns:1fr}.resources{grid-template-columns:1fr 1fr}.week{height:108px}.bar{height:68px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="logo">M</div>
+  <nav class="nav">
+    <button class="active" data-page="home" title="الرئيسية">⌂</button>
+    <button data-page="planner" title="المخطط">▦</button>
+    <button data-page="subjects" title="المواد">📚</button>
+    <button data-page="library" title="المكتبة">🔗</button>
+    <button data-page="exercises" title="التمارين">✎</button>
+    <button data-page="teachers" title="الأساتذة">♧</button>
+    <button data-page="motivation" title="التحفيز">♡</button>
+    <button data-page="settings" title="الإعدادات">⚙</button>
+  </nav>
+  <div class="stickers"><div class="sticker">FOCUS</div><div class="sticker">BAC 27</div><div class="sticker">BREATHE</div><div class="sticker">25 MIN</div><div class="sticker">YOU GOT THIS</div></div>
+  <div class="sidebottom">2027</div>
+</aside>
+
+<main class="main">
+<header class="top">
+  <div class="top-title" id="pageTitle">Overview</div>
+  <div class="top-actions">
+    <div class="focus">Focus Mode ●</div>
+    <button class="icon" onclick="toast('كل شيء هادئ هنا ✦')">♧</button>
+    <div class="profile"><div class="avatar" id="avatar">م</div><div><b id="profileName">طالبة</b><small>Bac Sciences</small></div></div>
+  </div>
+</header>
+
+<section class="content">
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="grid">
+    <div class="card hero">
+      <div class="hero-inner">
+        <div>
+          <div class="date" id="dateText"></div>
+          <h1>صباح الخير، <span id="helloName">طالبة</span> 🌿</h1>
+          <p>لديكِ <b id="remaining">3</b> مهام دراسية اليوم. لنأخذها بهدوء.</p>
+          <button class="primary" onclick="go('planner')">خطة اليوم ←</button>
+        </div>
+        <div class="cal"><div class="calhead"><span id="month"></span><span id="year"></span></div><div class="calgrid" id="calendar"></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section"><h2>مهام اليوم</h2><button onclick="openTask()">+ مهمة</button></div>
+      <div class="tasks" id="tasks"></div>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <div class="section"><h2>إيقاع الأسبوع</h2><span>ساعات مخططة</span></div>
+      <div class="week" id="week"></div>
+      <div style="font-size:9px;color:var(--muted)">هذا مجرد تنظيم للوقت، وليس خانة «تقدّم».</div>
+    </div>
+    <div class="card timer">
+      <h3>Pomodoro</h3><small>جلسة تركيز</small>
+      <div class="clock" id="clock">25:00</div>
+      <button onclick="adjust(-5)">−</button><button onclick="toggleTimer()" id="timerBtn">Start</button><button onclick="adjust(5)">+</button>
+    </div>
+  </div>
+
+  <div class="section"><h2>مواردي السريعة</h2><button onclick="go('library')">المكتبة ←</button></div>
+  <div class="resources">
+    <div class="resource"><b>🧬 العلوم</b><small>دروس + ملخصات</small></div>
+    <div class="resource"><b>🧮 الرياضيات</b><small>تمارين + حلول</small></div>
+    <div class="resource"><b>⚗️ الفيزياء</b><small>شرح + تطبيق</small></div>
+    <div class="resource"><b>🇬🇧 الإنجليزية</b><small>لغة + منهجية</small></div>
+    <div class="resource"><b>🇸🇦 العربية</b><small>نصوص + منهجية</small></div>
+    <div class="resource"><b>📜 التاريخ</b><small>مفاهيم + تواريخ</small></div>
+  </div>
+
+  <div class="card quote" style="margin-top:14px"><div class="small">رسالة اليوم</div><div class="quote-text" id="quote"></div><button class="primary" onclick="newQuote()">رسالة أخرى ✦</button></div>
+
+  <div class="section"><h2>خريطة العام</h2><span>سبتمبر 2026 → جوان 2027</span></div>
+  <div class="annual">
+    <div class="phase"><b>01</b><h3>التأسيس</h3><p>سبتمبر → نوفمبر<br>فهم الدروس وبناء روتين ثابت.</p></div>
+    <div class="phase"><b>02</b><h3>التثبيت</h3><p>ديسمبر → فيفري<br>تمارين متدرجة ومراجعة دورية.</p></div>
+    <div class="phase"><b>03</b><h3>التدريب</h3><p>مارس → ماي<br>مواضيع باك وتوقيت حقيقي.</p></div>
+    <div class="phase"><b>04</b><h3>المراجعة النهائية</h3><p>جوان<br>مراجعة مركزة ونوم وهدوء.</p></div>
+  </div>
+</div>
+
+<!-- PLANNER -->
+<div id="planner" class="page">
+  <div class="section"><h2>مخطط الدراسة</h2><button onclick="openTask()">+ إضافة مهمة</button></div>
+  <div class="card">
+    <div class="filters"><select id="taskFilter" onchange="renderPlanner()"><option value="all">كل المواد</option></select><select><option>هذا الأسبوع</option><option>هذا الشهر</option><option>العام الدراسي</option></select></div>
+    <div class="tasks" id="plannerTasks"></div>
+  </div>
+  <div class="section"><h2>طريقة اليوم</h2></div>
+  <div class="card"><div class="list"><div class="listcard"><span class="tag">قبل الدراسة</span><h3>حددي هدف الجلسة</h3><p>جملة واحدة: ماذا أريد أن أفهم أو أحل؟</p></div><div class="listcard"><span class="tag">بعد الدراسة</span><h3>اتركي ملاحظة قصيرة</h3><p>ما الذي يحتاج مراجعة لاحقًا؟ دون حساب نقاط أو نسب.</p></div></div></div>
+</div>
+
+<!-- SUBJECTS -->
+<div id="subjects" class="page">
+  <div class="section"><h2>المواد المقررة</h2><span>علوم تجريبية</span></div>
+  <div class="subjects" id="subjectsGrid"></div>
+  <div class="card" style="margin-top:14px"><b style="font-size:11px">ملاحظة</b><p style="font-size:9px;color:var(--muted);line-height:1.9;margin-bottom:0">هذه النسخة تبني هيكل المواد الذي طلبتِه. تفاصيل البرنامج الرسمي للعام 2026–2027 سنربطها بالمصادر الرسمية المنشورة من وزارة التربية بدل افتراض محتويات قد تتغير.</p></div>
+</div>
+
+<!-- LIBRARY -->
+<div id="library" class="page">
+  <div class="section"><h2>مكتبتي</h2><button onclick="openResource()">+ مصدر</button></div>
+  <div class="card">
+    <div class="filters"><input id="search" placeholder="ابحثي عن مصدر..." oninput="renderResources()"><select id="resourceFilter" onchange="renderResources()"><option value="all">كل المواد</option></select></div>
+    <div class="list" id="resourceList"></div>
+  </div>
+</div>
+
+<!-- EXERCISES -->
+<div id="exercises" class="page">
+  <div class="section"><h2>التمارين والتطبيقات</h2><span>أضيفي روابطك المفضلة</span></div>
+  <div class="list" id="exerciseList"></div>
+</div>
+
+<!-- TEACHERS -->
+<div id="teachers" class="page">
+  <div class="section"><h2>الأساتذة</h2><span>قائمة قابلة للتخصيص</span></div>
+  <div class="list" id="teacherList"></div>
+  <div class="card" style="margin-top:12px"><b style="font-size:11px">كيف سنختار الأساتذة؟</b><p style="font-size:9px;color:var(--muted);line-height:1.9;margin:6px 0 0">سأفضّل المصادر التي تناسب منهج الجزائر، وتشرح بوضوح، وتوفر تمارين وتصحيحًا. لن نضع أسماء عشوائية على أنها «الأفضل» دون تحقق.</p></div>
+</div>
+
+<!-- MOTIVATION -->
+<div id="motivation" class="page">
+  <div class="section"><h2>ركن التحفيز</h2></div>
+  <div class="card quote"><div class="small">حين يصبح كل شيء كثيرًا...</div><div class="quote-text" id="bigQuote"></div><button class="primary" onclick="newQuote()">أعطني واحدة أخرى ✦</button></div>
+  <div class="list" style="margin-top:12px">
+    <div class="listcard"><span class="tag">تركيز</span><h3>جلسة واحدة تكفي للبدء</h3><p>لا تنتظري الحماس؛ ابدئي بخمس دقائق ثم اتركي التركيز يكمل.</p></div>
+    <div class="listcard"><span class="tag">راحة</span><h3>الراحة جزء من الخطة</h3><p>النوم والطعام والهدوء ليست أشياء تعيق الدراسة.</p></div>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+<div id="settings" class="page">
+  <div class="section"><h2>حسابي وإعداداتي</h2></div>
+  <div class="card" style="max-width:720px">
+    <div class="field"><label>الاسم الظاهر</label><input id="nameInput"></div>
+    <div class="field"><label>السنة</label><input id="yearInput"></div>
+    <div class="field"><label>الوصف</label><input id="bioInput"></div>
+    <div class="actions"><button class="add" onclick="saveProfile()">حفظ</button><button class="cancel" onclick="exportData()">نسخة احتياطية</button><button class="cancel" onclick="document.getElementById('importFile').click()">استرجاع</button></div>
+    <input id="importFile" type="file" accept="application/json" style="display:none" onchange="importData(event)">
+    <div class="card" style="margin-top:14px;background:#F1F7F3;box-shadow:none"><b style="font-size:10px">حول الحساب</b><p style="font-size:9px;color:var(--muted);line-height:1.9;margin:5px 0 0">هذه النسخة الشخصية تحفظ بياناتك محليًا على الجهاز. النسخة المنشورة يمكن لاحقًا ربطها بمزامنة سحابية حتى تظهر نفس البيانات على الهاتف والحاسوب.</p></div>
+  </div>
+</div>
+</section>
+</main>
+</div>
+
+<div class="modalbg" id="taskModal"><div class="modal">
+<h3>إضافة مهمة</h3>
+<div class="field"><label>المهمة</label><input id="taskName" placeholder="مثلاً: حل 3 تمارين في الدوال"></div>
+<div class="field"><label>المادة</label><select id="taskSubject"></select></div>
+<div class="field"><label>الوقت</label><input id="taskTime" type="time" value="17:00"></div>
+<div class="actions"><button class="add" onclick="addTask()">إضافة</button><button class="cancel" onclick="closeModal('taskModal')">إلغاء</button></div>
+</div></div>
+
+<div class="modalbg" id="resourceModal"><div class="modal">
+<h3>إضافة مصدر إلى مكتبتي</h3>
+<div class="field"><label>اسم المصدر</label><input id="resName" placeholder="اسم الأستاذ، الملف، القناة..."></div>
+<div class="field"><label>المادة</label><select id="resSubject"></select></div>
+<div class="field"><label>النوع</label><select id="resType"><option>شرح</option><option>ملخص</option><option>تمارين</option><option>فيديو</option><option>موقع</option></select></div>
+<div class="field"><label>الرابط</label><input id="resUrl" placeholder="https://..."></div>
+<div class="actions"><button class="add" onclick="addResource()">حفظ</button><button class="cancel" onclick="closeModal('resourceModal')">إلغاء</button></div>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const SUBJECTS=[
+["🧬","علوم الطبيعة والحياة"],["🧮","الرياضيات"],["⚗️","العلوم الفيزيائية"],
+["🇬🇧","اللغة الإنجليزية"],["🇸🇦","اللغة العربية"],["☪️","التربية الإسلامية"],["📜","التاريخ"]
+];
+const QUOTES=[
+"ليس مطلوبًا منكِ أن تكوني مثالية اليوم؛ المطلوب فقط أن تتقدمي قليلًا.",
+"25 دقيقة من التركيز الحقيقي أفضل من ساعتين مع التشتت.",
+"حين يبدو الطريق طويلًا، ركّزي على الخطوة التالية فقط.",
+"لا تحكمي على عام كامل من خلال يوم سيئ.",
+"الاستمرارية الهادئة أقوى من دفعات الحماس القصيرة."
+];
+const TITLES={home:"Overview",planner:"Study Planner",subjects:"Subjects",library:"My Library",exercises:"Exercises",teachers:"Teachers",motivation:"Motivation",settings:"My Account"};
+let state=JSON.parse(localStorage.getItem("masari-final")||"null")||{
+ profile:{name:"طالبة",year:"2027",bio:"طالبة بكالوريا — علوم تجريبية"},
+ tasks:[
+  {name:"مراجعة درس العلوم",subject:"علوم الطبيعة والحياة",time:"09:00",done:false},
+  {name:"تمارين الرياضيات",subject:"الرياضيات",time:"14:00",done:false},
+  {name:"تطبيقات الفيزياء",subject:"العلوم الفيزيائية",time:"17:00",done:false}
+ ],
+ resources:[
+  {name:"دفتر مصادر العلوم",subject:"علوم الطبيعة والحياة",type:"ملخص",url:""},
+  {name:"دفتر مصادر الرياضيات",subject:"الرياضيات",type:"تمارين",url:""},
+  {name:"دفتر مصادر الفيزياء",subject:"العلوم الفيزيائية",type:"شرح",url:""}
+ ]};
+const $=id=>document.getElementById(id);
+function persist(){localStorage.setItem("masari-final",JSON.stringify(state))}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
+function toast(t){let x=$("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2200)}
+function go(p){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));$(p).classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.toggle("active",x.dataset.page===p));$("pageTitle").textContent=TITLES[p];scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>go(b.dataset.page));
+function profile(){
+ let n=state.profile.name||"طالبة";$("profileName").textContent=n;$("helloName").textContent=n;$("avatar").textContent=n.trim()[0]||"م";
+ $("nameInput").value=n;$("yearInput").value=state.profile.year||"2027";$("bioInput").value=state.profile.bio||"";
+}
+function calendar(){
+ let d=new Date(),days=["ح","ن","ث","ر","خ","ج","س"];$("month").textContent=d.toLocaleDateString("ar-DZ",{month:"long"});$("year").textContent=d.getFullYear();
+ $("dateText").textContent=d.toLocaleDateString("ar-DZ",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+ let first=new Date(d.getFullYear(),d.getMonth(),1).getDay(),off=(first+6)%7,total=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+ let h=days.map(x=>`<b>${x}</b>`).join("");for(let i=0;i<off;i++)h+="<i></i>";for(let i=1;i<=total;i++)h+=`<i class="${i===d.getDate()?"today":""}">${i}</i>`;$("calendar").innerHTML=h;
+}
+function options(){
+ let o=SUBJECTS.map(s=>`<option>${s[1]}</option>`).join("");$("taskSubject").innerHTML=o;$("resSubject").innerHTML=o;
+ $("taskFilter").innerHTML='<option value="all">كل المواد</option>'+o;$("resourceFilter").innerHTML='<option value="all">كل المواد</option>'+o;
+}
+function taskHTML(t,i){return `<div class="task ${t.done?"done":""}" onclick="toggleTask(${i})"><button class="check">${t.done?"✓":""}</button><div class="taskmain"><div class="taskname">${esc(t.name)}</div><div class="taskmeta">• ${esc(t.subject)}</div></div><div class="time">${esc(t.time)}</div></div>`}
+function renderTasks(){
+ $("remaining").textContent=state.tasks.filter(x=>!x.done).length;
+ $("tasks").innerHTML=state.tasks.map(taskHTML).join("")||'<div class="empty">لا توجد مهام. أضيفي أول مهمة 🌿</div>';
+ renderPlanner();
+}
+function renderPlanner(){
+ let f=$("taskFilter").value;let arr=state.tasks.map((t,i)=>[t,i]).filter(([t])=>f==="all"||t.subject===f);
+ $("plannerTasks").innerHTML=arr.map(([t,i])=>taskHTML(t,i)).join("")||'<div class="empty">لا توجد مهام لهذه المادة.</div>';
+}
+function toggleTask(i){state.tasks[i].done=!state.tasks[i].done;persist();renderTasks();toast(state.tasks[i].done?"أحسنتِ، أُنجزت ✓":"أُعيدت المهمة")}
+function week(){let v=[38,55,70,48,83,62,35],l=["ح","ن","ث","ر","خ","ج","س"];$("week").innerHTML=v.map((x,i)=>`<div class="day"><div class="bar"><span style="height:${x}%"></span></div>${l[i]}</div>`).join("")}
+function subjects(){ $("subjectsGrid").innerHTML=SUBJECTS.map((s,i)=>`<div class="subject"><div class="stripe"></div><div class="ico">${s[0]}</div><h3>${s[1]}</h3><p>دروس، ملخصات، تمارين، ومصادر شخصية.</p><div class="chips"><span class="chip">الدروس</span><span class="chip">التمارين</span><span class="chip">المصادر</span></div></div>`).join("")}
+function renderResources(){
+ let q=($("search").value||"").toLowerCase(),f=$("resourceFilter").value;
+ let arr=state.resources.filter(r=>(f==="all"||r.subject===f)&&(`${r.name} ${r.type} ${r.subject}`.toLowerCase().includes(q)));
+ $("resourceList").innerHTML=arr.map(r=>`<div class="listcard"><span class="tag">${esc(r.type)}</span><h3>${esc(r.name)}</h3><p>${esc(r.subject)}</p>${r.url?`<a class="chipbtn" href="${esc(r.url)}" target="_blank" rel="noopener">فتح الرابط ↗</a>`:"<span style='font-size:8px;color:var(--muted)'>مصدر محفوظ محليًا</span>"}</div>`).join("")||'<div class="empty">لا توجد نتائج.</div>';
+}
+function exercises(){
+ let a=[
+ ["🧮","الرياضيات","تمارين الدوال","تدرج من الأساسيات إلى مسائل الباك"],
+ ["⚗️","العلوم الفيزيائية","تطبيقات الحركة والطاقة","حل خطوة بخطوة"],
+ ["🧬","علوم الطبيعة والحياة","تحليل الوثائق","تدريب على المنهجية"],
+ ["📜","التاريخ","مفاهيم وشخصيات","مراجعة قصيرة متكررة"],
+ ["🇬🇧","الإنجليزية","Writing + Vocabulary","جلسة لغة قصيرة"]
+ ];
+ $("exerciseList").innerHTML=a.map(x=>`<div class="listcard"><div style="font-size:24px">${x[0]}</div><span class="tag">${x[1]}</span><h3>${x[2]}</h3><p>${x[3]}</p><button class="chipbtn" onclick="toast('أضيفت إلى قائمة المراجعة ✦')">أريد حلّه</button></div>`).join("");
+}
+function teachers(){
+ let a=[
+ ["🧬","علوم الطبيعة والحياة","أضيفي هنا الأستاذ الذي تفضلينه","شرح + منهجية"],
+ ["🧮","الرياضيات","أضيفي القناة المناسبة لك","شرح + تمارين"],
+ ["⚗️","العلوم الفيزيائية","أضيفي المصدر المفضل","شرح + تطبيقات"],
+ ["🇬🇧","اللغة الإنجليزية","أضيفي الأستاذ المناسب","لغة + كتابة"],
+ ["📚","اللغة العربية","أضيفي الأستاذ المناسب","نصوص + منهجية"]
+ ];
+ $("teacherList").innerHTML=a.map(x=>`<div class="listcard"><div style="font-size:24px">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p><span class="tag">${x[3]}</span><button class="chipbtn" style="margin-top:9px" onclick="openResource()">إضافة إلى مكتبتي</button></div>`).join("");
+}
+function quote(){let q=QUOTES[Math.floor(Math.random()*QUOTES.length)];$("quote").textContent=q;$("bigQuote").textContent=q}
+function newQuote(){$("bigQuote").textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)]}
+function openTask(){$("taskModal").classList.add("show")}function openResource(){$("resourceModal").classList.add("show")}
+function closeModal(id){$(id).classList.remove("show")}
+function addTask(){let n=$("taskName").value.trim();if(!n)return toast("اكتبي اسم المهمة أولًا");state.tasks.push({name:n,subject:$("taskSubject").value,time:$("taskTime").value||"17:00",done:false});persist();renderTasks();closeModal("taskModal");$("taskName").value="";toast("أضيفت المهمة ✦")}
+function addResource(){let n=$("resName").value.trim();if(!n)return toast("اكتبي اسم المصدر أولًا");state.resources.push({name:n,subject:$("resSubject").value,type:$("resType").value,url:$("resUrl").value.trim()});persist();renderResources();closeModal("resourceModal");$("resName").value="";$("resUrl").value="";toast("حُفظ المصدر في مكتبتك ✦")}
+function saveProfile(){state.profile={name:$("nameInput").value.trim()||"طالبة",year:$("yearInput").value.trim()||"2027",bio:$("bioInput").value.trim()};persist();profile();toast("حُفظت الإعدادات ✓")}
+function exportData(){let b=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="masari-backup.json";a.click();URL.revokeObjectURL(a.href);toast("تم إنشاء النسخة الاحتياطية")}
+function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{state=JSON.parse(r.result);persist();location.reload()}catch{toast("الملف غير صالح")}};r.readAsText(f)}
+let seconds=1500,running=false,interval=null;
+function showClock(){let m=Math.floor(seconds/60),s=seconds%60;$("clock").textContent=`${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`}
+function toggleTimer(){if(running){clearInterval(interval);running=false;$("timerBtn").textContent="Start"}else{running=true;$("timerBtn").textContent="Pause";interval=setInterval(()=>{if(seconds>0){seconds--;showClock()}else{clearInterval(interval);running=false;$("timerBtn").textContent="Start";toast("انتهت جلسة التركيز 🌿")}},1000)}}
+function adjust(x){seconds=Math.max(60,seconds+x*60);showClock()}
+options();profile();calendar();renderTasks();week();subjects();renderResources();exercises();teachers();quote();showClock();
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>
